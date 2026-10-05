@@ -1,14 +1,15 @@
 package org.example;
 
 public class Perro extends Mascota implements Adoptable{
-    public  String raza;
-    public  boolean vacunado;
-    public String adopcion;
+    private static final double PRECIO_BASE = 15000.0;
+    private static final double NO_VACUNADO = 1.30;
+    private  String raza;
+    private  boolean vacunado;
+    private boolean adopcion;
 
-    public Perro(String nombre, int edad, double peso ,String raza, boolean vacunado,  String adopcion) {
+    public Perro(String nombre, int edad, double peso ,String raza, boolean vacunado,  boolean adopcion) {
         super(nombre,edad,peso);
         this.raza = raza;
-        this.adopcion = adopcion;
         setVacunado(vacunado);
     }
 
@@ -41,7 +42,11 @@ public class Perro extends Mascota implements Adoptable{
     }
 
     @Override
-    public void calcularCosto(){
-
+    public double calcularCosto(){
+        double costo = PRECIO_BASE;
+        if(isVacunado()){
+            costo *= NO_VACUNADO;
+        }
+        return costo;
     }
 }

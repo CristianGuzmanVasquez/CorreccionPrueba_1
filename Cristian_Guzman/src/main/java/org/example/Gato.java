@@ -1,7 +1,9 @@
 package org.example;
 
 public class Gato extends Mascota{
-    public boolean viveExterior;
+    private static final double PRECIO_BASE = 12000.0;
+    private static final double VIVE_EN_EXTERIOR = 1.15;
+    private boolean viveExterior;
     /*
     * Diosito apiadate de esta pobre alma ;C
     * */
@@ -21,8 +23,12 @@ public class Gato extends Mascota{
     }
 
     @Override
-    public void calcularCosto(){
-
+    public double calcularCosto(){
+        double costo = PRECIO_BASE;
+        if(!isViveExterior()){
+            costo += VIVE_EN_EXTERIOR;
+        }
+        return costo;
     }
 
 }

@@ -1,9 +1,9 @@
 package org.example;
 
 public abstract class Mascota {
-    protected String nombre;
-    protected int edad;
-    protected double peso;
+    private String nombre;
+    private int edad;
+    private double peso;
 
     public Mascota(String nombre, int edad, double peso) {
         setNombre(nombre);
@@ -44,11 +44,12 @@ public abstract class Mascota {
         this.peso = peso;
     }
 
-    public void calcularCosto(){}
+    public abstract double calcularCosto();
 
+    @Override
     public String toString() {
-        return "Nombre: " + getNombre() +
-                "Edad: " + getEdad();
+        return "Nombre: " + nombre +
+                "Edad: " + edad + "años";
     }
 
 }
