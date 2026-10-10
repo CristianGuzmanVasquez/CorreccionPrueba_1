@@ -5,12 +5,13 @@ public class Perro extends Mascota implements Adoptable{
     private static final double NO_VACUNADO = 1.30;
     private  String raza;
     private  boolean vacunado;
-    private boolean adopcion;
+    private boolean dispAdopcion;
 
-    public Perro(String nombre, int edad, double peso ,String raza, boolean vacunado,  boolean adopcion) {
+    public Perro(String nombre, int edad, double peso ,String raza, boolean vacunado,  boolean dispAdopcion) {
         super(nombre,edad,peso);
         this.raza = raza;
         setVacunado(vacunado);
+        this.dispAdopcion = dispAdopcion;
     }
 
     public String getRaza() {
@@ -18,6 +19,9 @@ public class Perro extends Mascota implements Adoptable{
     }
 
     public void setRaza(String raza) {
+        if(raza == null || raza.trim().isEmpty()){
+            throw new IllegalArgumentException("La raza no puede estar vacia");
+        }
         this.raza = raza;
     }
 
@@ -29,22 +33,20 @@ public class Perro extends Mascota implements Adoptable{
         this.vacunado = vacunado;
     }
 
-    public void estaVacundado(){
-    }
-
     @Override
     public boolean disponibleAdopcion() {
-        return true;
+        return dispAdopcion;
     }
 
     @Override
     public void registrarAdopcion() {
+        dispAdopcion = true;
     }
 
     @Override
     public double calcularCosto(){
         double costo = PRECIO_BASE;
-        if(isVacunado()){
+        if(!isVacunado()){
             costo *= NO_VACUNADO;
         }
         return costo;

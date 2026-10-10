@@ -16,7 +16,7 @@ public abstract class Mascota {
     }
 
     public void setNombre(String nombre) {
-        if(nombre == null || nombre.isEmpty()){
+        if(nombre == null || nombre.trim().isEmpty()){
             throw new IllegalArgumentException("El nombre no puede estar vacio");
         }
         this.nombre = nombre;
@@ -38,7 +38,7 @@ public abstract class Mascota {
     }
 
     public void setPeso(double peso) {
-        if (peso < 0){
+        if (peso <= 0){
             throw new IllegalArgumentException("el peso debe ser mayor a cero");
         }
         this.peso = peso;
@@ -49,7 +49,7 @@ public abstract class Mascota {
     @Override
     public String toString() {
         return "Nombre: " + nombre +
-                "Edad: " + edad + "años";
+                " | Edad: " + edad + " años";
     }
 
 }
